@@ -22,6 +22,7 @@ class Tabelusers extends Migration
 			'email'       => ['type' => 'varchar', 'constraint' => 100, 'unique' => true],
 			'password'    => ['type' => 'varchar', 'constraint' => 225],
 			'id_level'    => ['type' => 'int', 'constraint' => 11],
+			'id_jurusan'    => ['type' => 'int', 'constraint' => 11],
 			'created_at'  => ['type' => 'datetime'],
 			'updated_at'  => ['type' => 'datetime'],
 		];

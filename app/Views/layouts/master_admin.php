@@ -121,7 +121,7 @@
 
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; EVOTING APP 2020 <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a> and Made by <a href="https://github.com/robbiabd">Robbi Abdul Rohman</a>
+          Copyright &copy; EVOTING PEMIRA APP 2021 <div class="bullet"></div> Made with love By <a href="https://blmfasilkomupnjatim.github.io/">BLM FASILKOM</a>
         </div>
       </footer>
     </div>

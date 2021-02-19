@@ -19,7 +19,9 @@ class Tabelpemilih extends Migration
 		$fields = [
 			'id_pemilih'  => ['type' => 'int', 'constraint' => 11, 'auto_increment' => true],
 			'token_key'   => ['type' => 'varchar', 'constraint' => 50],
-			'id_kandidat' => ['type' => 'int', 'constraint' => 11, 'null' => true],
+			'id_kandidatbem' => ['type' => 'int', 'constraint' => 11, 'null' => true],
+			'id_kandidatblm' => ['type' => 'int', 'constraint' => 11, 'null' => true],
+			'id_user'     => ['type' => 'int', 'constraint' => 11],
 			'created_at'  => ['type' => 'datetime'],
 			'updated_at'  => ['type' => 'datetime'],
 		];

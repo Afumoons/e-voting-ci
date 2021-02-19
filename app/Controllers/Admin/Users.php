@@ -9,6 +9,7 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
+use App\Models\JurusanModel;
 use App\Models\UserModel;
 use App\Models\LevelModel;
 use Config\Services;
@@ -27,9 +28,11 @@ class Users extends BaseController
 		helper(['form']);
 		$userModel = new UserModel();
 		$levelModel = new LevelModel();
+		$jurusanModel = new JurusanModel();
 
 		$data['title'] = 'Tambah User';
 		$data['level'] = $levelModel->findAll();
+		$data['jurusan'] = $jurusanModel->findAll();
 
 		if ($this->request->getMethod() == 'post') {
 
@@ -37,7 +40,8 @@ class Users extends BaseController
 				'nama' 		=> 'required|alpha_space|min_length[2]',
 				'email'		=> 'required|valid_email|is_unique[users.email]',
 				'password'	=> 'required|min_length[3]',
-				'level'		=> 'required|numeric'
+				'level'		=> 'required|numeric',
+				'jurusan'		=> 'required|numeric'
 			];
 
 			if ($this->validate($rules)) {
@@ -45,7 +49,8 @@ class Users extends BaseController
 					'nama' 		=> htmlspecialchars($this->request->getPost('nama')),
 					'email'		=> htmlspecialchars($this->request->getPost('email')),
 					'password'	=> htmlspecialchars(password_hash($this->request->getPost('password'), PASSWORD_DEFAULT)),
-					'id_level'	=> htmlspecialchars($this->request->getPost('level'))
+					'id_level'	=> htmlspecialchars($this->request->getPost('level')),
+					'id_jurusan'	=> htmlspecialchars($this->request->getPost('jurusan')),
 				];
 
 				$insert = $userModel->insert($params);
@@ -86,6 +91,7 @@ class Users extends BaseController
 		helper(['form', 'url']);
 		$userModel = new UserModel();
 		$levelModel = new LevelModel();
+		$jurusanModel = new JurusanModel();
 
 		$id = htmlspecialchars($this->request->uri->getSegment(4));
 
@@ -196,10 +202,28 @@ class Users extends BaseController
 					$row[] = $no;
 					$row[] = $list->nama;
 					$row[] = $list->email;
-					$row[] = $list->id_level == 1 ? 'Administrator' : 'Petugas';
+					// cek label sesuai id level
+					if ($list->id_level == 1) {
+						$row[] = 'Administrator';
+					} elseif ($list->id_level == 2) {
+						$row[] = 'Petugas';
+					} elseif ($list->id_level == 3) {
+						$row[] = 'Pendata';
+					} else {
+						$row[] = 'Pemilih';
+					}
 					$row[] = $list->created_at;
-					$row[] = '<a class="btn btn-warning" href="' . base_url('admin/user/edit/' . $list->id_user) . '">Edit</a> 
-	                			<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_user . '">Hapus</a>';
+					// Cek level wewenang
+					if ($list->id_level > session()->id_level) {
+						// Cek sama jurusan
+						if ($list->id_jurusan == session()->id_jurusan) {
+							$row[] = '<a class="btn btn-warning" href="' . base_url('admin/user/edit/' . $list->id_user) . '">Edit</a><a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_user . '">Hapus</a>';
+						} else {
+							$row[] = '';
+						}
+					} else {
+						$row[] = '';
+					}
 					$data[] = $row;
 				}
 			}

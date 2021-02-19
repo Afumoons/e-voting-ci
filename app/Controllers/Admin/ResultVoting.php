@@ -1,9 +1,11 @@
 <?php
+
 /**
  * E-Voting Codeigniter 4
  * Robbi Abdul Rohman
  * https://github.com/robbiabd
- */ 
+ */
+
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
@@ -27,13 +29,14 @@ class ResultVoting extends BaseController
 		$data['total_pemilih'] = $pemilihModel->select('COUNT(id_pemilih) as total_pemilih')->first();
 		$data['total_petugas'] = $userModel->select('COUNT(id_user) as total_petugas')->first();
 
-		$dateNow = date('Y-m-d') ;
+		$dateNow = date('Y-m-d');
 		$data['get_aktivitas'] = $pemilihModel->select('token_key, created_at')
-							->where('date(created_at)', $dateNow)
-							->limit(5)
-							->get()->getResultArray();
+			->where('date(created_at)', $dateNow)
+			->limit(5)
+			->get()->getResultArray();
 
-		$data['total_voting'] = $kandidatModel->get_kandidat_pemilih();
+		$data['total_voting_bem'] = $kandidatModel->get_kandidat_pemilih_bem();
+		$data['total_voting_blm'] = $kandidatModel->get_kandidat_pemilih_blm();
 
 		return view('admin/hasil/lihat_hasil', $data);
 	}

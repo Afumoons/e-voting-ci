@@ -32,7 +32,8 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->add('/', 'Home::index');
-$routes->add('tentang', 'Tentang::index');
+// $routes->add('tentang', 'Tentang::index');
+$routes->add('tentang', 'Home::index');
 
 
 // Auth Routes
@@ -42,7 +43,8 @@ $routes->add('logout', 'Auth/Auth::logout');
 // Voting Routes
 $routes->group('voting', ['filter' => 'ceklogin'], function ($routes) {
     $routes->add('/', 'Pemilih/Voting::index');
-    $routes->add('kandidat', 'Pemilih/Voting::kandidatList', ['filter' => 'cektoken']);
+    $routes->add('kandidatbem', 'Pemilih/Voting::kandidatbemList', ['filter' => 'cektoken']);
+    $routes->add('kandidatblm', 'Pemilih/Voting::kandidatblmList', ['filter' => 'cektoken']);
     $routes->add('kandidat/pilih', 'Pemilih/Voting::pilihKandidat', ['filter' => 'cektoken']);
 });
 
@@ -55,8 +57,8 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
     // admin user routes
     $routes->add('users', 'Admin/Users::index', ['filter' => 'ceklevel2']);
     $routes->add('user/add', 'Admin/Users::add', ['filter' => 'ceklevel2']);
-    $routes->add('user/delete', 'Admin/Users::delete', ['filter' => 'ceklevel1']);
-    $routes->add('user/edit/(:num)', 'Admin/Users::edit', ['filter' => 'ceklevel1']);
+    $routes->add('user/delete', 'Admin/Users::delete', ['filter' => 'ceklevel2']);
+    $routes->add('user/edit/(:num)', 'Admin/Users::edit', ['filter' => 'ceklevel2']);
     $routes->add('user/change_password', 'Admin/Users::change_password');
 
     //admin kandidat routes

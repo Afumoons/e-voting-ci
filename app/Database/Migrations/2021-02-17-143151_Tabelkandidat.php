@@ -18,10 +18,12 @@ class Tabelkandidat extends Migration
 		 */
 		$fields = [
 			'id_kandidat'  => ['type' => 'int', 'constraint' => 11, 'auto_increment' => true],
-			'nama'         => ['type' => 'varchar', 'constraint' => 150],
+			'nama'         => ['type' => 'varchar', 'constraint' => 225],
 			'visi'         => ['type' => 'text'],
 			'misi'         => ['type' => 'text'],
-			'avatar'       => ['type' => 'datetime'],
+			'id_jurusan'         => ['type' => 'varchar', 'constraint' => 225],
+			'ormawa'         => ['type' => 'varchar', 'constraint' => 225],
+			'avatar'       => ['type' => 'varchar', 'constraint' => 225],
 			'created_at'   => ['type' => 'datetime'],
 			'updated_at'   => ['type' => 'datetime'],
 		];
