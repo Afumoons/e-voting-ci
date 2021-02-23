@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class Tabelusers extends Migration
+class Tabelverifikasi extends Migration
 {
 	public function up()
 	{
@@ -17,13 +17,9 @@ class Tabelusers extends Migration
 		 * Tabel untuk users
 		 */
 		$fields = [
-			'id_user'     => ['type' => 'int', 'constraint' => 11, 'auto_increment' => true],
-			'nama'        => ['type' => 'varchar', 'constraint' => 100],
+			'id_verifikasi'     => ['type' => 'int', 'constraint' => 11, 'auto_increment' => true],
 			'email'       => ['type' => 'varchar', 'constraint' => 100, 'unique' => true],
-			'password'    => ['type' => 'varchar', 'constraint' => 225],
-			'id_level'    => ['type' => 'int', 'constraint' => 11],
-			'id_jurusan'    => ['type' => 'int', 'constraint' => 11],
-			'is_active'    => ['type' => 'int', 'constraint' => 1],
+			'token'    => ['type' => 'varchar', 'constraint' => 225],
 			'created_at'  => ['type' => 'datetime'],
 			'updated_at'  => ['type' => 'datetime'],
 		];
@@ -32,11 +28,9 @@ class Tabelusers extends Migration
 		$this->forge->addField($fields);
 
 		// $this->forge->addKey('field',TRUE(optional primary),TRUE(optional unique));
-		$this->forge->addKey('id_user', TRUE);
-		$this->forge->addKey('id_level');
+		$this->forge->addKey('id_verifikasi', TRUE);
 
-
-		$this->forge->createTable('users');
+		$this->forge->createTable('verifikasi');
 
 		$this->db->enableForeignKeyChecks();
 	}
@@ -45,7 +39,7 @@ class Tabelusers extends Migration
 	{
 		$this->db->disableForeignKeyChecks();
 
-		$this->forge->dropTable('users');
+		$this->forge->dropTable('verifikasi');
 
 		$this->db->enableForeignKeyChecks();
 	}

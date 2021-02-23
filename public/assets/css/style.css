@@ -1,19 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;1,600&display=swap");
 
-* 
-{
-	margin: 0;
-	padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-body 
-{
-	font-family: 'Raleway', sans-serif;
+body {
+  font-family: "Raleway", sans-serif;
 }
 
-.btn-token:hover
-{
-	color: black!important;
+.btn-token:hover {
+  color: black !important;
 }
 
 /* For page Home */
@@ -61,7 +58,7 @@ body
 }
 
 .testi-card .card .card-header {
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 #sticky-footer {
@@ -79,26 +76,46 @@ body
 }
 
 .font-raleway {
- font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 /* End For page Home */
 
-
 /* Love footer icon */
 .heart {
-  animation: beat .25s infinite alternate;
+  animation: beat 0.25s infinite alternate;
   transform-origin: center;
 }
 
-@keyframes beat{
-  to { transform: scale(1.4); }
+@keyframes beat {
+  to {
+    transform: scale(1.4);
+  }
 }
 /* End Love footer icon */
 
 /*for card image same size*/
 .card-img-top {
-width: 100%;
-height: 40vh;
-object-fit: cover;
+  width: 100%;
+  height: 40vh;
+  object-fit: cover;
+}
+.navbar-toggler div {
+  width: 1.5625em;
+  height: 0.1875em;
+  background-color: grey;
+  margin: 0.3125em;
+  transition: 350ms ease-in-out;
+}
+.line1.active {
+  transform: translateY(0.5125em) rotatez(360deg);
+  /* opacity: 0; */
+}
+.line2.active {
+  transform: rotatey(360deg);
+}
+.line3.active {
+  transform: translateY(-0.5125em) rotatez(-360deg);
+
+  /* opacity: 0; */
 }

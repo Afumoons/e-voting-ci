@@ -79,10 +79,10 @@
               <li>
                 <a class="nav-link" href="<?= base_url('admin/pemilih') ?>"><i class="fas fa-hand-pointer"></i> <span>Pemilih</span></a>
               </li>
-              <li>
-                <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-barcode"></i> <span>Token</span></a>
-              </li>
             <?php endif; ?>
+            <li>
+              <a class="nav-link" href="<?= base_url('admin/token') ?>"><i class="fas fa-barcode"></i> <span>Token</span></a>
+            </li>
 
             <?php if (session()->get('id_level') == 1 || session()->get('id_level') == 2 || session()->get('id_level') == 3) : ?>
               <!-- admin, petugas dan pendata -->

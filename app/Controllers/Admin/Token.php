@@ -24,7 +24,7 @@ class Token extends BaseController
 	public function add()
 	{
 		$data['title'] = 'Tambah Token';
-		$data['token'] = $this->token_generate();
+		$data['token'] = $this->_token_generate();
 		$tokenModel = new TokenModel();
 
 		if ($this->request->getMethod() == 'post') {
@@ -94,7 +94,7 @@ class Token extends BaseController
 		}
 	}
 
-	private function token_generate()
+	private function _token_generate()
 	{
 		$karakter = '!*ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789abcdefghijklmnopqrstupwxyz';
 		$string = '';
@@ -129,7 +129,11 @@ class Token extends BaseController
 				}
 				$row[] = $list->expired_at;
 				$row[] = $list->created_at;
-				$row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_token . '">Hapus</a>';
+				if (session()->id_level == 1 || session()->id_level == 2) {
+					$row[] = '<a class="btn btn-danger btn-delete" href="javascript:void(0)" data-id="' . $list->id_token . '">Hapus</a>';
+				} else {
+					$row[] = '';
+				}
 				$data[] = $row;
 			}
 

@@ -4,9 +4,11 @@
     <img src="/assets/img/undraw_security_o890.svg" width="80" alt="logo">
   </a>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <div class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="line1"></div>
+    <div class="line2"></div>
+    <div class="line3"></div>
+  </div>
 
   <div class="collapse navbar-collapse text-center " id="navbarSupportedContent">
     <ul class="navbar-nav mx-md-auto">
@@ -14,19 +16,18 @@
       <li class="nav-item active">
         <a class="nav-link text-dark" href="<?= base_url('/') ?>">Home</a>
       </li>
-
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="<?= base_url('tentang') ?>">Tentang Kami</a>
-      </li>
-
+      <?php if (session()->id_user) : ?>
+        <li class="nav-item">
+          <a class="nav-link text-dark" href="<?= base_url('admin/') ?>">Dashboard</a>
+        </li>
+      <?php endif; ?>
     </ul>
-    <?php if (session()->get('id_level') == 1 || session()->get('id_level') == 2 || session()->get('id_level') == 3 || session()->get('id_level') == 4) : ?>
-      <div class="auth mr-2">
-        <a href="<?= base_url('admin/') ?>" class="btn btn-warning">Dashboard</a>
-      </div>
-    <?php endif; ?>
     <div class="auth">
-      <a href="<?= base_url('voting') ?>" class="btn btn-warning">Mulai Voting</a>
+      <?php if (session()->id_user) : ?>
+        <a href="<?= base_url('voting') ?>" class="btn btn-warning">Mulai Voting</a>
+      <?php else : ?>
+        <a href="<?= base_url('login') ?>" class="btn btn-warning">Login</a>
+      <?php endif; ?>
     </div>
   </div>
 </nav>

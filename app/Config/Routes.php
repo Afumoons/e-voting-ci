@@ -39,6 +39,8 @@ $routes->add('tentang', 'Home::index');
 // Auth Routes
 $routes->add('login', 'Auth/Auth::index');
 $routes->add('logout', 'Auth/Auth::logout');
+$routes->add('register', 'Auth/Auth::registration');
+$routes->add('verify', 'Auth/Auth::verification');
 
 // Voting Routes
 $routes->group('voting', ['filter' => 'ceklogin'], function ($routes) {
@@ -68,7 +70,7 @@ $routes->group('admin', ['filter' => 'ceklogin'], function ($routes) {
     $routes->add('kandidat/edit/(:num)', 'Admin/Kandidat::edit', ['filter' => 'ceklevel1']);
 
     // admin token routes
-    $routes->add('token', 'Admin/Token::index', ['filter' => 'ceklevel1']);
+    $routes->add('token', 'Admin/Token::index');
     $routes->add('token/add', 'Admin/Token::add', ['filter' => 'ceklevel1']);
     $routes->add('token/delete', 'Admin/Token::delete', ['filter' => 'ceklevel1']);
     $routes->add('token/delete_all', 'Admin/Token::delete_all', ['filter' => 'ceklevel1']);
